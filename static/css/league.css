@@ -1,0 +1,120 @@
+/*基本设置*/
+body{
+    font-size:14px;
+	margin:0px auto;
+	padding:0px;
+	font-family:"microsoft yahei","arial","verdana"
+	color:#c00;
+	background:#efe0db;
+}
+ul,li,p,h1,h2,h3,h4,h5,h6,dl,dt,dd{
+    margin:0px;
+	padding:0px;
+	list-style:none;
+}
+input{
+    border:none;
+}
+a{
+	text-decoration: none;
+	color:#fff;
+}
+/*头部*/
+.header{
+	width:1200px;
+	height:100%;
+	margin:0 auto;
+	position: relative;
+}
+.header span{
+	float: right;
+	padding-right: 5px;
+}
+
+.header p{
+	position: absolute;
+	right: 0;
+	bottom:8px;
+	font-size: 17px;
+	color:#989898;
+}
+/*导航条*/
+.nav_background{
+	height:54px;
+	background-color: #762f19;
+	border-bottom: 1px solid #8e5440;
+}
+.nav{
+	width:1200px;
+	height:100%;
+	margin:0 auto;
+}
+.nav ul{
+	height:54px;
+}
+.nav ul li{
+	height:54px;
+	display: inline-block;
+}
+.nav ul li a{
+	display: inline-block;
+	width:167px;
+	height:54px;
+	line-height: 54px;
+	color:#dab997;
+	font-size: 20px;
+	text-align: center;
+}
+.nav ul li a:hover{
+	background-color: #c79483;
+	color:#8e5440;
+}
+/*遮罩层*/
+.Masked{
+	height:100%;
+	background: rgba(0,0,0,0.5);
+}
+/*欢迎语*/
+.intro_background{
+	height:335px;
+	background:url(../images/3.jpg);
+	background-size:100% ;
+	margin-bottom: 10px;
+}
+#main{
+	width:1200px;
+	margin:0 auto;
+	vertical-align:center;
+	text-align:center;
+	padding:100px auto;
+	padding-top:67px;
+}	
+#main_top{
+	text-align:center;
+}
+#main_top p{
+	color:rgba(255,255,255,0.4);
+	font-size:24px;
+}
+#main_center .border{
+	border:5px solid rgba(255,255,255,0.4);
+	margin:25px;	
+	display:inline-block;
+	border-radius:5px;
+}
+#main_center .border .bor p{
+	margin:5px;
+}
+#main_center .border .bor p span{
+	padding:25px 100px;
+	font-size:25px;
+	font-weight:600;
+	border:1px solid rgba(255,255,255,0.4);
+	display:inline-block;
+	background-color:rgba(255,255,255,0.4);
+}
+#main_bottom{
+	color:rgba(255,255,255,0.4);
+	font-size:18px;
+	letter-spacing:5px;
+}

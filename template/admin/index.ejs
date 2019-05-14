@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>森源艺佳后台管理中心</title>  
+    <link rel="stylesheet" href="../css/pintuer.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <script src="../js/jquery-1.11.3.js"></script>   
+</head>
+<body style="background-color:#f2f9fd;">
+<div class="header bg-main">
+  <div class="logo margin-big-left fadein-top">
+    <h1><img src="../images/y.jpg" class="radius-circle rotate-hover" height="50" alt="" />森源艺佳后台管理中心</h1>
+  </div>
+  <div class="head-l"><a class="button button-little bg-green" href="http://www.chengppcc.cn/" target="_blank"><span class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;<a href="##" class="button button-little bg-blue"><span class="icon-wrench"></span> 清除缓存</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="/admin/enter"><span class="icon-power-off"></span> 退出登录</a> </div>
+</div>
+<div class="leftnav">
+  <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
+  <h2><span class="icon-user"></span>首页</h2>
+  <ul style="display:block">
+    <li class="home_lun"><a target="right"><span class="icon-caret-right"></span>首页轮播</a></li>
+    <li class="home_sm"><a target="right"><span class="icon-caret-right"></span>明星产品</a></li>
+  </ul>   
+  <h2><span class="icon-pencil-square-o"></span>产品中心</h2>
+  <ul>
+    <li class="pro_tz"><a target="right"><span class="icon-caret-right"></span>特征设置</a></li>
+    <li class="pro_tzm"><a target="right"><span class="icon-caret-right"></span>产品列表</a></li>      
+  </ul> 
+  <h2><span class="icon-share-square-o"></span>新闻中心</h2>
+  <ul>
+    <li class="new_z"><a target="right"><span class="icon-caret-right"></span>新闻列表</a></li>       
+  </ul>
+  <h2><span class="icon-share-square-o"></span>家具保养</h2>
+  <ul>
+    <li class="home_maintain"><a target="right"><span class="icon-caret-right"></span>家具保养列表</a></li>       
+  </ul>
+  <h2><span class="icon-pencil-square-o"></span>联系留言</h2>
+  <ul>
+    <li class="pro_telephone"><a target="right"><span class="icon-caret-right"></span>留言列表</a></li>       
+  </ul>
+  <h2><span class="icon-pencil-square-o"></span>定制服务</h2>
+  <ul>
+    <li><a  target="right"><span class="icon-caret-right"></span>预约设置</a></li>
+    <li><a  target="right"><span class="icon-caret-right"></span>量尺设置</a></li>
+    <li><a  target="right"><span class="icon-caret-right"></span>设计区域</a></li>        
+  </ul>
+  <h2><span class="icon-pencil-square-o"></span>关于我们</h2>
+  <ul>
+    <li><a target="right"><span class="icon-caret-right"></span>公司简介</a></li>
+    <li><a target="right"><span class="icon-caret-right"></span>荣誉资质</a></li>
+    <li><a target="right"><span class="icon-caret-right"></span>公司文化</a></li>        
+  	<li><a target="right"><span class="icon-caret-right"></span>发展历程</a></li> 
+  </ul>
+  
+</div>
+<script type="text/javascript">
+$(function(){
+  $(".leftnav h2").click(function(){
+	  $(this).next().slideToggle(200);	
+	  $(this).toggleClass("on"); 
+  })
+  $(".leftnav ul li a").click(function(){
+	    $("#a_leader_txt").text($(this).text());
+  		$(".leftnav ul li a").removeClass("on");
+		$(this).addClass("on");
+  })
+});
+</script>
+<ul class="bread">
+  <li><a href="{:U('Index/info')}" target="right" class="icon-home"> 首页</a></li>
+  <li><a href="##" id="a_leader_txt">网站信息</a></li>
+</ul>
+<div class="admin">
+	<!--具体功能区域-->
+  	<!--首页轮播-->
+  	<div class="lun hidden">
+  		<% include s-list.ejs %>
+  	</div>
+  	<!--首页明星产品-->
+  	<div class="sm hidden">
+  		<% include sm-list.ejs %>
+  	</div>
+  	<!--产品中心特征-->
+  	<div class="tz hidden">
+  		<% include tz-list.ejs %>
+  	</div>
+  	<!--产品中心图片-->
+  	<div class="tzm hidden">
+  		<% include tzm-list.ejs %>
+  	</div>
+  	<!--新闻中心-->
+  	<div class="newss hidden">
+  		<% include news-list.ejs %>
+  	</div>
+  	<!--家具保养-->
+  	<div class="by hidden">
+  		<% include by-list.ejs %>
+  	</div>
+  	<!--留言列表-->
+  	<div class="s-list hidden">
+  		<% include tele-list.ejs %>
+  	</div>
+</div>
+<div style="text-align:center;">
+</div>
+<script type="text/javascript" src="../js/z-sen.js"></script>
+</body>
+</html>

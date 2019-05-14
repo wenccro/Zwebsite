@@ -1,0 +1,108 @@
+/*遮罩层*/
+.Masked{
+	height:100%;
+	background: rgba(0,0,0,0.5);
+}
+/*欢迎语*/
+.intro_background{
+	height:335px;
+	background:url(../images/3.jpg);
+	background-size:100% ;
+}
+#main{
+			width:1200px;
+			margin:0 auto;
+			vertical-align:center;
+			text-align:center;
+			padding:100px auto;
+			padding-top:67px;
+		}	
+		#main_top{
+			text-align:center;
+		}
+		#main_top p{
+			color:rgba(255,255,255,0.4);
+			font-size:24px;
+		}
+		#main_center .border{
+			border:5px solid rgba(255,255,255,0.4);
+			margin:25px;	
+			display:inline-block;
+			border-radius:5px;
+		}
+		#main_center .border .bor p{
+			margin:5px;
+		}
+		#main_center .border .bor p span{
+			padding:25px 100px;
+			font-size:25px;
+			font-weight:600;
+			border:1px solid rgba(255,255,255,0.4);
+			display:inline-block;
+			background-color:rgba(255,255,255,0.4);
+		}
+		#main_bottom{
+			color:rgba(255,255,255,0.4);
+			font-size:18px;
+			letter-spacing:5px;
+		}
+/*产品保养   部 分     */
+	.lf{float: left;}
+	.rt{float: right;}
+	#baoyang{
+		width:1200px;
+		margin:0 auto;
+		margin-bottom: 50px;
+	}
+	#baoyang .baoyang_box{
+		height:180px;
+		width: 900px;
+		border-bottom: 1px solid #C79483;
+		margin:20px;
+		padding:20px 0;
+		
+	}	
+	#baoyang .baoyang_rt img{
+		width: 250px;
+		height: 175px;
+	}
+	#baoyang .baoyang_box .baoyang{
+		padding-left:20px;
+		height:180px;
+		width: 630px;
+	}
+	#baoyang .baoyang h3{
+		color:#404040;
+		font-weight:normal;
+	}
+	#baoyang .baoyang p{
+		color:#B8B0AE;
+		margin-top:10px;	
+	}
+	#baoyang .baoyang p.data{
+		padding-top: 55px;
+	}
+	
+#baoyang_rt img{
+	padding: 10px 0px;
+	width:200px;
+	height: 140px;
+}
+#baoyang_rt{
+	margin: 20px 0px;
+	width:255px;
+	height:944px;
+	text-align:center;
+	background: url(../images/baoyang_1.png) no-repeat;
+	background-size: 100%;
+}
+#baoyang_scoll{
+	margin:80px 0 40px;
+	height:800px;
+	overflow: hidden;
+}
+
+
+
+
+

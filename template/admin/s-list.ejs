@@ -1,0 +1,147 @@
+<div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+    <div class="padding border-bottom">
+      <ul class="search" style="padding-left:10px;">
+        <li> <a class="button border-main icon-plus-square-o" href="/admin/homesadd"> 添加内容</a> </li>
+        <!--<li class="float-right">
+          <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
+          <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a>
+        </li>-->
+      </ul>
+    </div>
+    <table class="table table-hover text-center" >
+      <thead>
+      	<tr>
+      	<th width="100" style="text-align:left; padding-left:20px;"><input type="checkbox" id="checkall"/>
+          全选 </th>
+        <th width="10%">排序</th>
+        <th>图片</th>
+        <th>名称</th>
+        <th>简介</th>
+        <th width="10%">更新时间</th>
+        <th width="310">操作</th>
+      </tr>
+      </thead>
+      <!--存放列表内容-->
+      <tbody name="list" id="vo"></tbody>
+    </table>
+</div>
+<script type="text/javascript">
+	//上来拉取数据库信息
+	$.ajax({
+		type:"get",
+		url:"/admin/home",
+		async:true,
+		success:function(data){
+			if(data.result==1){
+				//拿到了数据
+				for(var i=0;i<data.data.length;i++){
+					$("#vo").append("<tr><td><input type='checkbox' name='id[]' value='' /></td><td class='sele'><select></select></td><td width='10%'><img 'alt='' width='70' height='50'/></td><td></td><td></td><td></td><td><div class='button-group'><button class='button border-main k_alter1'><span class='icon-edit'></span>修改</button><button class='button border-red dele1'><span class='icon-trash-o'></span>删除</button></div></td></tr>");//加入行
+					$("#vo>tr:eq("+i+")>td:eq(2)>img").attr("src","/upload/"+data.data[i].img_url);
+					$("#vo>tr:eq("+i+")>td:eq(3)").text(data.data[i].name)
+					//截取文字
+					var world=data.data[i].carousel.slice(1,15);
+					$("#vo>tr:eq("+i+")>td:eq(4)").text(world)
+					var time=data.data[i].img_time.split('-');
+					$("#vo>tr:eq("+i+")>td:eq(5)").text(time[0]+'-'+time[1]+'-'+time[2])
+					$("#vo>tr:eq("+i+")>td:eq(6)>div>button").attr("data-id",data.data[i].ID);
+				}
+				for(var i=0;i<data.data.length;i++){
+					$("#vo select").append("<option value="+(i+1)+">"+(i+1)+"</option>")
+					$("#vo>tr:eq("+i+") select>option:eq("+i+")").attr("selected","selected")
+				}
+				
+				//操作删除和修改的
+				$(".dele1").click(function(){
+					var c_id=$(this).attr("data-id");
+					//console.log(c_id);
+					if(confirm("确认删除吗？")){
+						$.ajax({
+							type:"delete",
+							url:"/admin/c_delete",
+							data:{"id":c_id},
+							async:true,
+							success:function(data){
+								if(data.result==-1){
+									alert("删除失败");	
+									window.location='/admin'
+								}else{
+									alert("删除成功");
+									window.location='/admin'
+								}
+							}
+						});
+					}
+				});
+				//修改
+				$(".k_alter1").click(function(){//将页面转换到修改页面
+					var c_id=$(this).attr("data-id");
+					window.location='/admin/alter'+'?c_id='+c_id;
+				});
+				//搜索
+				
+			}
+		}
+	});
+	//搜索
+	function changesearch(){	
+			
+	}
+	
+	//单个删除
+	function del(id,mid,iscid){
+		if(confirm("您确定要删除吗?")){
+			
+		}
+	}
+	
+	//全选
+	$("#checkall").click(function(){ 
+	  $("input[name='id[]']").each(function(){
+		  if (this.checked) {
+			  this.checked = false;
+		  }
+		  else {
+			  this.checked = true;
+		  }
+	  });
+	})
+	
+	//批量删除
+	function DelSelect(){
+		var Checkbox=false;
+		 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){
+		var t=confirm("您确认要删除选中的内容吗？");
+		if (t==false) return false;		
+		$("#listform").submit();		
+	}
+	else{
+		alert("请选择您要删除的内容!");
+			return false;
+		}
+	}
+	
+	//批量排序
+	function sorts(){
+		var Checkbox=false;
+		 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){	
+		
+		$("#listform").submit();		
+	}
+	else{
+		alert("请选择要操作的内容!");
+			return false;
+		}
+	}
+
+</script>

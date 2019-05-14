@@ -1,0 +1,250 @@
+/*遮罩层*/
+.Masked{
+	height:100%;
+	background: rgba(0,0,0,0.5);
+}
+/*欢迎语*/
+.intro_background{
+	height:335px;
+	background:url(../images/3.jpg);
+	background-size:100% ;
+}
+#main{
+			width:1200px;
+			margin:0 auto;
+			vertical-align:center;
+			text-align:center;
+			padding:100px auto;
+			padding-top:67px;
+		}	
+		#main_top{
+			text-align:center;
+		}
+		#main_top p{
+			color:rgba(255,255,255,0.4);
+			font-size:24px;
+		}
+		#main_center .border{
+			border:5px solid rgba(255,255,255,0.4);
+			margin:25px;	
+			display:inline-block;
+			border-radius:5px;
+		}
+		#main_center .border .bor p{
+			margin:5px;
+		}
+		#main_center .border .bor p span{
+			padding:25px 100px;
+			font-size:25px;
+			font-weight:600;
+			border:1px solid rgba(255,255,255,0.4);
+			display:inline-block;
+			background-color:rgba(255,255,255,0.4);
+		}
+		#main_bottom{
+			color:rgba(255,255,255,0.4);
+			font-size:18px;
+			letter-spacing:5px;
+		}
+/*查询列表*/
+.refer{
+	width:1200px;
+	margin:auto;	
+}
+.refer>ul{
+	color:#763017;
+	margin-bottom: 20px;
+}
+.refer>ul li{
+	border-bottom: 1px solid #e3cfc8;
+	padding:20px;
+	padding-left: 5px;
+	font-size: 18px;
+}
+.refer>ul li span{
+	display: inline-block;
+	width:65px;
+	float: left;
+	position:relative;
+	top:9px;
+}
+.refer>ul li p{
+	width:1100px;
+	display: inline-block;
+}
+.refer>ul li a{
+	display: inline-block;
+	font-weight: normal;
+	padding:7px;
+	margin:0 7px;
+	margin-top:4px;
+	cursor: pointer;
+	color:#763017;
+}
+/*产品列表*/
+.list{
+	width:100%;
+}
+.list p{
+	color:#763017;
+	font-size: 18px;
+	padding-left: 10px;
+}
+.list li{
+	padding:10px;
+	float: left;
+}
+.list li img{
+	width:380px;
+	height:262px;
+}
+.list li h5{
+	font-size: 18px;
+	padding-top:5px;
+	padding-left: 10px;
+	color:#763017;
+}
+/*//详情页面*/
+.details{
+	border:1px solid #000;
+	height:635px;
+	margin-bottom: 25px;
+	padding:20px;
+}
+.details_img{
+	width:790px;
+	display: inline-block;
+	position:relative;
+}	
+
+.details_img>img{
+	width:780px;
+	height:524px;
+}
+/*点击效果*/
+.details_img>div{
+	width:98.5%;
+	height:105px;
+	overflow: hidden;
+}
+.details_img>div ul{
+	height:105px;
+	display: inline-block;
+	white-space: nowrap;
+}
+.details_img>div ul li{
+	height:100%;
+	display: inline-block;
+}
+.details_img>div ul li img{
+	width:152px;
+	height:100px;
+	cursor: pointer;
+}
+.details_img>div ul li img.hover{
+	border:2px solid blue; 	
+}
+.details_font{
+	height:100%;
+	width:365px;
+	display: inline-block;
+	float: right;
+}
+.details_font h3{
+	font-size: 20px;
+	font-weight: normal;
+	position: relative;
+	padding-left: 30px;
+}
+.details_font h3 b{
+	position: absolute;
+	width:12px;
+	height:20px;
+	background-color:#762f19;
+	left:10px;
+	top:3px;
+}
+.details_font p{
+	margin-top:10px;
+	border:1px solid #000;
+	padding:20px;
+	height:380px;
+	font-size:16px;
+	color:#413f42;
+}
+.contact{	/*联系方式*/
+	height:54px;
+	margin-top:10px;
+	background-color:#ad7260;
+	color:#fff;
+	text-align: center;
+	line-height: 54px;
+	font-size: 20px;
+}
+.contact span{
+	font-size: 26px;
+	margin-left: 5px;
+}
+
+/*翻页*/
+.btn_L{
+	position:absolute;
+	left: 0px;
+	width:40px;
+	height:101px;
+	background:rgba(0,0,0,0.3);
+	bottom: 4px;
+	text-align: center;
+	line-height: 102px;
+	color:#fff;
+	cursor: pointer;
+}
+.btn_L:hover{
+	background:rgba(0,0,0,0.8);
+}
+.btn_R:hover{
+	background:rgba(0,0,0,0.8);
+}
+.btn_R{
+	position:absolute;
+	right: 13px;
+	width:40px;
+	height:100px;
+	background:rgba(0,0,0,0.3);
+	bottom: 5px;
+	text-align: center;
+	line-height: 102px;
+	color:#fff;
+	cursor: pointer;
+}
+/*查询Hover*/
+.refer .hover{
+	background-color:#c79483;
+}
+/*分页*/
+.fenye{ font:24px "Microsoft YaHei";
+	 height:100px; }
+#page{ margin:10px auto;
+	 width:960px;
+	  text-align:center;
+ }
+#page a{ 
+	text-decoration:none; 
+	display:inline-block; 
+	height:50x; padding:0 10px; 
+	border-radius:5px; 
+	background-color:#EFE0DB; 
+	color:#762F19; 
+	text-align:center;
+	margin:0 2px; 
+}
+#page a:hover,#page .now{ 
+	background-color:#762F19;
+	color:#fff; 
+	transition:all .5s ease 0s; 
+}
+
+
+
+
+

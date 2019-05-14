@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title>家具保养修改</title>
+<link rel="stylesheet" href="../css/pintuer.css" type="text/css" >
+<link rel="stylesheet" href="../css/admin.css" type="text/css" >
+<link rel="stylesheet" href="../css/cropper.css"  type="text/css" />
+<script src="../js/jquery-1.11.3.js" ></script>
+<script src="../js/pintuer.js" type="text/javascript"></script>
+<script src="../js/cropper.js" type="text/javascript"></script>
+<script src="../layDate/laydate/laydate.js"" type="text/javascript"></script> 
+
+<!--引入富文本比较器的js-->
+<script type="text/javascript" charset="UTF-8" src="../ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../ueditor/lang/zh-cn/zh-cn.js"></script>
+<style>
+#cropedBigImg{
+min-height:40px;
+padding:0px;
+
+}
+</style>
+</head>
+<body>
+	<div class="header bg-main">
+	  <div class="logo margin-big-left fadein-top">
+	    <h1><img src="../images/y.jpg" class="radius-circle rotate-hover" height="50" alt="" />森源艺佳后台管理中心</h1>
+	  </div>
+	  <div class="head-l"><a class="button button-little bg-green" href="http://www.chengppcc.cn/" target="_blank"><span class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;<a href="##" class="button button-little bg-blue"><span class="icon-wrench"></span> 清除缓存</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="/admin/enter"><span class="icon-power-off"></span> 退出登录</a> </div>
+	</div>
+<div class="panel admin-panel">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>新闻增加内容</strong></div>
+  <div class="body-content">
+    <div class="form-x">  
+      <div class="form-group cp_name">
+        <div class="label">
+          <label>家具保养标题：</label>
+        </div>
+        <div class="field">
+          <input id="tu_name" type="text" class="input w25" value="" name="title" data-validate="required:请输入标题" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group time_name">
+        <div class="label">
+          <label>发布时间：</label>
+        </div>
+        <div class="field">
+          	<input type="text" class="form-control" id="test1">  
+        </div>
+      </div>
+      <div class="form-group cp_name">
+        <div class="label">
+          <label>是否是主要信息：</label>
+        </div>
+        <div class="field">
+          	<div class="radio">
+				<label>
+					<input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked><b>是</b>
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+					<input type="radio" name="optionsRadios" id="optionsRadios2" value="0" ><b>否</b>
+				</label>
+			</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label style="line-height: 200px; font-size: 20px;">保养主图片：</label>
+        </div>
+        <div class="field yuimga">
+          <img id="cropedBigImg" name="img" class="input tips" style="width:25%; float:left;"  value=""  data-toggle="hover" data-place="right" data-image=""/>
+          <span>
+          	<input class="button bg-blue margin-left" id="image1" value="修改图片"  style="float:left; cursor: pointer;">
+          </span>
+        </div>
+        <div class="container hidden">
+        		<input type="file" id="file">
+		        <img src="" alt="" id="img">
+		    </div>
+		    <div class="preview hidden">
+				<img src="" alt="" id="imga">
+		   	</div>
+		   	<div style="clear:both">
+		   		<button class="button bg-main qie hidden">裁剪</button>
+		   	</div>
+		   	<div class="field hidden jie">
+		   		<img id="cropedBigImg1" name="img" class="input tips" style="width:35%; margin: 0 auto;"  value=""  data-toggle="hover" data-place="right" data-image=""/>
+		   	</div>
+      </div> 
+      <div class="form-group cp_jj">
+      	<div class="label">
+	          <label style="line-height: 200px; font-size: 20px;">保养内容</label>
+	       </div>
+			    <div class="field">
+					<textarea id="content_tian"  style="height: 700px; width: 1000px;"></textarea>
+					<!--实例化一个富文本框-->
+					<script type="text/javascript">
+						var ue=UE.getEditor('content_tian');
+					</script>
+				</div>
+        </div>
+      </div>
+      <div class="clear"></div>
+
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="hidden" id="alter_id"></div>
+        <div class="hidden" id="sm_biao">0</div>
+        <div class="field subtt">
+          	<button class="button bg-main icon-check-square-o sub" > 提交</button>
+           <a href="/admin" class="button bg-main icon-check-square-o " >返回</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  	  <script>
+  	  	(function(){
+  			var reg = new RegExp(/[^=]+/g);//^以什么开头，匹配全部   
+			var r = window.location.search.substr(1).match(reg); 
+			var t_id=parseInt(r[1]);
+			$.ajax({
+				type:"post",
+				url:"/admin/tain_lters",
+				async:true,
+				data:{"id":t_id},
+				success:function(data){
+					console.log(data.data);
+					$("#alter_id").html(data.data[0].ID);
+					$("#tu_name").val(data.data[0].hmaint_title);
+					let time_new=data.data[0].news_time
+						time_new=time_new.split("-");
+					$("#test1").val(time_new[0]+'-'+time_new[1]+'-'+time_new[2]);
+					if(data.data[0].isheadline==1){
+						$("#optionsRadios1").attr("checked",true);
+					}else{
+						$("#optionsRadios2").attr("checked",true);
+					}
+					$("#cropedBigImg").attr("src","/upload/"+data.data[0].news_image);
+					//产品详情
+					ue.ready(function() { 
+						ue.setContent(data.data[0].hmaint_content); 
+					});
+				}
+			});
+  	  	})();
+  	  		//执行一个laydate实例
+			laydate.render({
+			  elem: '#test1' //指定元素
+			});
+	    
+	    	$("#image1").click(function(){
+	    		$(".container").removeClass("hidden");
+				$(".preview").removeClass("hidden");
+				$(".qie").removeClass("hidden");
+				$(".yuimga").addClass("hidden");
+				
+				/******************************裁剪****************************/
+			  		var image = document.getElementById('img');
+		        	var cropper, canvas;
+		        	var wid,hei,cropwid,crophei;//宽高比
+	    			$('#file').change(function(e){
+	    				$("#sm_biao").html(1);//写入1，图片修改按钮表示点击了修改
+		            	var files = e.target.files;
+		            	if(files && files.length > 0) {
+		             		file = URL.createObjectURL(files[0]);
+			             	$('#img').attr({'src': file})
+		             		var images= new Image();
+		             		images.onload=function(){
+		             			var width=parseInt(images.width);
+		             			var height=parseInt(images.height);
+		             			if(width>height){
+		             				wid=3;
+		             				hei=2;
+		             			}else if(width<height){
+		             				wid=2;
+		             				hei=3;
+		             			}else{
+		             				wid=1;
+		             				hei=1;
+		             			}
+		             		}
+		             		images.src=file;
+			            }
+		             var cropper = new Cropper(image,{
+		             	//裁剪框比例
+						aspectRatio: wid/hei,    
+						viewMode:1,
+						background:false,
+						zoomable:false,//是否允许放大图片
+						scalable:true,//是否允许缩小图片
+						dragMode :'crop',
+						//minCropBoxWidth:cropwid,//裁剪的最小宽度
+						//minCropBoxHeight:crophei,//裁剪的最大宽度
+		                cropBoxResizable:true,
+		                autoCropArea:0.8,//定义自动裁剪面积大小(百分比)和图片进行对比
+		               	mouseWheelZoom:true,//是否允许通过鼠标滚轮来缩放图片
+		                autoCrop:true,//自动裁剪
+		                background:true,
+		                modal:true,
+		                guides:true,
+		                highlight:false,   
+		                resizable:true,
+	
+		                crop: function (event) { //剪裁框发生变化执行的函数。
+		                    canvas = cropper.getCroppedCanvas({  //使用canvas绘制一个宽和高200的图片
+		  						width: 780,
+		                        height: 520,
+		                    });
+		                    $('#imga').attr("src", canvas.toDataURL("image/png", 0.3))  //使用canvas toDataURL方法把图片转换为base64格式
+		                	$("#cropedBigImg1").attr("src", canvas.toDataURL("image/png", 0.3))
+		                	//当图片存放
+		                	$(".qie").click(function(){
+		                		$(".container").addClass('hidden');
+		                		$(".preview").addClass('hidden');
+		                		$(".jie").removeClass('hidden');
+		                		$(".qie").addClass("hidden");
+		                	})	
+		                }
+	            	});
+	           
+	        	})
+	    	
+	    	})
+  	  	
+		//将base64格式图片转换为文件形式
+	    function dataURLtoBlob(dataurl) {  
+	        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+	            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+	        while (n--) {
+	            u8arr[n] = bstr.charCodeAt(n);
+	        }
+	        return new Blob([u8arr], { type: mime });
+	    }	
+		   /**********************************************************/
+				$(".sub").click(function(){
+					var name=$("#tu_name").val();//新闻标题
+					var new_time=$("#test1").val();//新闻时间时间
+					var ishear=$(".form-x input[name='optionsRadios']:checked").val();
+					var miao=UE.getEditor('content_tian').getContent();//内容
+					var id=parseInt($("#alter_id").html())
+					var sm_biao=parseInt($("#sm_biao").html());//判断图片是否修改
+					if(sm_biao==1){
+						var file = dataURLtoBlob($('#imga').attr("src"));  //将base64格式图片转换为文件形式
+						var formData = new FormData();
+						var newImg = new Date().getTime() + '.jpg';   //给图片添加文件名   如果没有文件名会报错
+						formData.append('file', file, newImg)  //formData对象添加文件
+					}
+					
+					if(name!=''&&img.length!=0){//必须有名字和图片
+						//console.log(files_name[0]);
+							//发送图片以外的数据
+						$.ajax({
+							type:"post",
+							url:"/admin/tain_alter",
+							data:{
+								"id":id,
+								 "name":name,
+								 "times":new_time,
+								 "ishear":ishear,
+								 "miao":miao
+							},
+							dataType: 'JSON',
+							async:true,
+							success:function(data){
+								if(sm_biao==1){//修改了
+									$.ajax({
+										type:"post",
+										url:"/admin/tain_alterImage"+"?id="+id,
+										data:formData,
+										dataType: 'JSON',
+										contentType:false,
+										processData:false,
+										success:function(data){
+											if(data.result==1){
+												alert("修改成功");
+												window.location='/admin'
+											}
+										}
+									});
+								}else{
+									if(data.result==1){
+										alert("修改成功");
+										window.location='/admin'
+									}
+								}
+								
+							}
+						});
+					}else{
+						alert("必须有名字")
+					}
+				})
+	  </script>
+</div>
+</body>
+</html>

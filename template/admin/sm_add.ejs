@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title>明星产品添加</title>
+<link rel="stylesheet" href="../css/pintuer.css">
+<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="../css/cropper.css" />
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../js/pintuer.js"></script>
+<script src="../js/cropper.js"></script>
+<style>
+#cropedBigImg{
+min-height:40px;
+padding:0px;
+
+}
+</style>
+</head>
+<body>
+<!--导航条-->
+<div class="header bg-main">
+  <div class="logo margin-big-left fadein-top">
+    <h1><img src="../images/y.jpg" class="radius-circle rotate-hover" height="50" alt="" />森源艺佳后台管理中心</h1>
+  </div>
+  <div class="head-l"><a class="button button-little bg-green" href="http://www.chengppcc.cn/" target="_blank"><span class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;<a href="##" class="button button-little bg-blue"><span class="icon-wrench"></span> 清除缓存</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="/admin/enter"><span class="icon-power-off"></span> 退出登录</a> </div>
+</div>
+<!--列表-->
+<div class="leftnav">
+  <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
+  <h2><span class="icon-user"></span>首页</h2>
+  <ul style="display:block">
+    <li class="home_lun"><a target="right"><span class="icon-caret-right"></span>首页轮播</a></li>
+    <li class="home_sm"><a target="right"><span class="icon-caret-right"></span>明星产品</a></li>
+  </ul>   
+  <h2><span class="icon-pencil-square-o"></span>产品中心</h2>
+  <ul>
+    <li class="pro_tz"><a target="right"><span class="icon-caret-right"></span>特征设置</a></li>
+    <li class="pro_tzm"><a target="right"><span class="icon-caret-right"></span>产品列表</a></li>      
+  </ul> 
+  <h2><span class="icon-pencil-square-o"></span>新闻中心</h2>
+  <ul>
+    <li class="new_z"><a target="right"><span class="icon-caret-right"></span>新闻列表</a></li>       
+  </ul>
+  <h2><span class="icon-pencil-square-o"></span>定制服务</h2>
+  <ul>
+    <li><a  target="right"><span class="icon-caret-right"></span>预约设置</a></li>
+    <li><a  target="right"><span class="icon-caret-right"></span>量尺设置</a></li>
+    <li><a  target="right"><span class="icon-caret-right"></span>设计区域</a></li>        
+  </ul>
+  <h2><span class="icon-pencil-square-o"></span>关于我们</h2>
+  <ul>
+    <li><a target="right"><span class="icon-caret-right"></span>公司简介</a></li>
+    <li><a target="right"><span class="icon-caret-right"></span>荣誉资质</a></li>
+    <li><a target="right"><span class="icon-caret-right"></span>公司文化</a></li>        
+  	<li><a target="right"><span class="icon-caret-right"></span>发展历程</a></li> 
+  </ul>
+  <h2><span class="icon-pencil-square-o"></span>留言管理</h2>
+  <ul>
+    <li><a  target="right"><span class="icon-caret-right"></span>留言列表</a></li>
+  </ul>
+</div>
+<!--脚本区-->
+<script type="text/javascript">
+$(function(){
+  $(".leftnav h2").click(function(){
+	  $(this).next().slideToggle(200);	
+	  $(this).toggleClass("on"); 
+  })
+  $(".leftnav ul li a").click(function(){
+	    $("#a_leader_txt").text($(this).text());
+  		$(".leftnav ul li a").removeClass("on");
+		$(this).addClass("on");
+  })
+});
+</script>
+<ul class="bread">
+  <li><a href="{:U('Index/info')}" target="right" class="icon-home"> 首页</a></li>
+  <li><a href="##" id="a_leader_txt">网站信息</a></li>
+</ul>
+<!--内容区-->
+<div class="panel admin-panel admin">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加内容</strong></div>
+  <div class="body-content">
+    <div class="form-x">  
+      <div class="form-group">
+        <div class="label">
+          <label>名称：</label>
+        </div>
+        <div class="field">
+          <input id="tu_name" type="text" class="input w25" value="" name="title" data-validate="required:请输入标题" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>图片：</label>
+        </div>
+        <div class="container">
+	        <input type="file" id="file">
+	        <img src="" alt="" id="img">
+		    </div>
+		    <div class="preview">
+				<img src="" alt="" id="imga">
+		   	</div>
+		   	<div style="clear:both">
+		   		<button class="button bg-main qie">裁剪</button>
+		   	</div>
+		   	<div class="field hidden jie">
+		   		<img id="cropedBigImg" name="img" class="input tips" style="width:60%; margin: 0 auto;"  value=""  data-toggle="hover" data-place="right" data-image=""/>
+		   	</div>
+      </div>     
+      <div class="form-group">
+        <div class="label">
+          <label>产品理念：</label>
+        </div>
+        <div class="field">
+          <textarea id="miao" class="input" name="note" style=" height:90px;"></textarea>
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="clear"></div>
+
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o sub" > 提交</button>
+           <a href="/admin" class="button bg-main icon-check-square-o " >返回</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  	  <script>
+  	  	
+		   /******************************裁剪****************************/
+		  		var image = document.getElementById('img');
+	        var cropper, canvas;
+	        var wid,hei;
+	        $('#file').change(function(e){
+	            var file;
+	            var files = e.target.files;
+	             	if(files && files.length > 0) {
+	                file = URL.createObjectURL(files[0]);
+	                $('#img').attr({'src': file})
+	                var images= new Image();
+             			images.onload=function(){
+             				var width=parseInt(images.width);
+             				var height=parseInt(images.height);
+             				if(width>height){
+             					wid=3;
+             					hei=2;
+             				}else{
+             					wid=2;
+             					hei=3;
+             				}
+             			}
+             			images.src=file;
+	            	}
+	             var cropper = new Cropper(image,{
+	             	//裁剪框比例
+									aspectRatio: wid/hei,    
+									viewMode:1,
+									background:false,
+									zoomable:false,//是否允许放大图片
+									scalable:true,//是否允许缩小图片
+									dragMode :'crop',
+	                cropBoxResizable:true,
+	                autoCropArea:0.8,//定义自动裁剪面积大小(百分比)和图片进行对比
+	               	mouseWheelZoom:true,//是否允许通过鼠标滚轮来缩放图片
+	                autoCrop:true,//自动裁剪
+	                background:true,
+	                modal:true,
+	                guides:true,
+	                highlight:false,   
+	                resizable:true,
+
+                crop: function (event) { //剪裁框发生变化执行的函数。
+                    canvas = cropper.getCroppedCanvas({  //使用canvas绘制一个宽和高200的图片
+  											width: 600,
+                        height: 400,
+                    });
+                    canvas1 = cropper.getCroppedCanvas({  //使用canvas绘制一个宽和高200的图片
+  											width: 300,
+                        height: 300,
+                    });
+                    $('#imga').attr("src", canvas1.toDataURL("image/png",0.3))  //使用canvas toDataURL方法把图片转换为base64格式
+                    $("#cropedBigImg").attr("src", canvas.toDataURL("image/png",0.3))
+                	//当图片存放
+                	$(".qie").click(function(){
+                		$(".container").addClass('hidden');
+                		$(".preview").addClass('hidden');
+                		$(".jie").removeClass('hidden');
+                		$(".qie").addClass("hidden");
+                	})
+                }
+            });
+        })
+		//将base64格式图片转换为文件形式
+	    function dataURLtoBlob(dataurl) {  
+	        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+	            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+	        while (n--) {
+	            u8arr[n] = bstr.charCodeAt(n);
+	        }
+	        return new Blob([u8arr], { type: mime });
+	    }	
+		   /**********************************************************/
+				$(".sub").click(function(){
+						var name=$("#tu_name").val();
+						var miao=$("#miao").val();
+						var c_img=$('#image1').prop('files');//获取文件图片
+						if(name!=''&&img.length!=0){//必须有名字和图片
+							var file = dataURLtoBlob($('#imga').attr("src"));  //将base64格式图片转换为文件形式
+	    				var file1= dataURLtoBlob($('#cropedBigImg').attr("src"));
+	    				var formData = new FormData();
+	    				var newImg = new Date().getTime() + '.jpg';   //给图片添加文件名   如果没有文件名会报错
+	    				formData.append('file', file, newImg)  //formData对象添加文件
+	    				var newImg = new Date().getTime() + '.jpg';
+	    				formData.append('file', file1, newImg)  //formData对象添加文件
+							//console.log(files_name[0]);
+							
+								//发送图片以外的数据
+								$.ajax({
+									type:"post",
+									url:"/admin/home_stadd",
+									data:{
+										 "name":name,
+										 "miao":miao
+									},
+									dataType: 'JSON',
+									async:true,
+									success:function(data){
+										var c_id=data.data.insertId;//拿到新添加的id
+										$.ajax({
+											type:"post",
+											url:"/admin/homeSTAddImage"+"?id="+c_id,
+											data:formData,
+											dataType: 'JSON',
+											contentType:false,
+											processData:false,
+											success:function(data){
+												if(data.result==1){
+													alert("上传成功");
+													window.location='/admin/homesSadd'
+												}
+											}
+										});
+									}
+								});
+						}
+				})
+	  </script>
+</div>
+</body>
+</html>

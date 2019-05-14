@@ -1,0 +1,230 @@
+<div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+    <div class="padding border-bottom">
+      <ul class="search" style="padding-left:10px;">
+      	<li>
+          <button type="button"  class="button border-green" id="tele_checkall"><span class="icon-check"></span> 全选</button>
+          <button type="submit" class="button border-red" onclick="DelSelect()"><span class="icon-trash-o"></span> 批量删除</button>
+        </li>
+        <li class="float-right">
+          <input type="text" placeholder="请输入搜索名称关键字" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
+          <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a>
+        </li>
+      </ul>
+    </div>
+    <table class="table table-hover text-center" >
+      <thead>
+      	<tr>
+      	<th width="100" style="text-align:left; padding-left:20px;">
+          </th>
+        <th>姓名</th>  
+        <th>电话</th>
+        <th>留言</th>
+        <th width="310">操作</th>
+      </tr>
+      </thead>
+      <!--存放列表内容-->
+      <tbody name="list" id="televo"></tbody>
+    </table>
+    <div style="width:100%">
+    	<table style="margin: 0 auto;">
+    		<tr>
+		        <td colspan="8">
+		        	<div class="pagelist tele_pagelist">
+			        	<a>上一页</a> 
+			        	<a class="current">1</a>
+			        	<a>2</a>
+			        	<a>3</a>
+			        	<a>4</a>
+			        	<a>5</a>
+			        	<a>下一页</a>
+			        	<a>尾页</a> 
+			        </div>
+		        </td>
+	      	</tr>
+    	</table>
+    </div>
+</div>
+<script type="text/javascript">
+	//上来拉取数据
+	page_tele(0);
+	//页面拉取函数
+	function page_tele(page_num){
+		$.ajax({
+			type:"get",
+			url:"/admin/tele",
+			data:{
+				"num":page_num
+			},
+			async:true,
+			success:function(data){
+				$("#televo").text('');//清除之前添加的暂无内容的信息
+				if(data.result==1){
+					//拿到了数据
+					for(var i=0;i<data.data.length;i++){
+						$("#televo").append("<tr><td><input type='checkbox' name='id[]' value='' /></td><td></td><td></td><td></td><td><div class='button-group'><button class='button border-main tele_alters'><span class='icon-edit'></span>查看</button><button class='button border-red tele_dele'><span class='icon-trash-o'></span>删除</button></div></td></tr>");//加入行
+						$("#televo>tr:eq("+i+")>td:eq(0)>input").attr("data-id",data.data[i].ID);
+						$("#televo>tr:eq("+i+")>td:eq(1)").text(data.data[i].name)
+						$("#televo>tr:eq("+i+")>td:eq(2)").text(data.data[i].tele_num)
+						var worldss=data.data[i].context;
+							worldss=worldss.slice(0,20);
+						$("#televo>tr:eq("+i+")>td:eq(3)").text(worldss);
+						$("#televo>tr:eq("+i+")>td:eq(4)>div>button").attr("data-id",data.data[i].ID);
+					}
+				}else{
+					$("#televo").append("<tr style='text-align: center; height: 20px;'><td></td><td></td><td>暂无内容，请先添加</td></tr>");
+				}
+				//操作删除和修改的
+					$(".tele_dele").click(function(){
+						var c_id=$(this).attr("data-id");
+						//console.log(c_id);
+						if(confirm("确认删除吗？")){
+							$.ajax({
+								type:"delete",
+								url:"/admin/tele_delete",
+								data:{"id":c_id},
+								async:true,
+								success:function(data){
+									if(data.result==-1){
+										alert("删除失败");	
+										window.location='/admin'
+									}else{
+										alert("删除成功");
+										window.location='/admin'
+									}
+								}
+							});
+						}
+					});
+					//查看
+					$(".tele_alters").click(function(){//将页面转换到修改页面
+						var c_id=$(this).attr("data-id");
+						window.location='/admin/tele_look'+'?c_id='+c_id;
+					});		
+			}
+		});
+	}
+	
+	//分页函数
+	$(".tele_pagelist").delegate('a','click',function(){
+		var test_biao=$(this).text();
+		if(test_biao!='下一页'&&test_biao!='上一页'){//直接点击时
+	 		var page_num=parseInt(test_biao);//获取所选中的页码数字并转化为int型
+			$(this).addClass('current').siblings().removeClass('current');//为选中添加状态，移除其兄弟元素的选中状态
+			page_tele(page_num);//调用函数
+	 	}else{//当点击的不是数字时
+	 		if(test_biao=='下一页'){
+	 			var ac_text=parseInt($(".tele_pagelist a.current").html());//获取现在所处位置的内容
+	 			var te_num=ac_text%5;//对应到li所处的位置上
+	 			var last_right_num=parseInt($(".tele_pagelist>a:eq(5)").html());//获取最右边的数字
+	 			if(ac_text<last_right_num){//当选中状态不是最后一个时
+	 				$(".tele_pagelist>a:eq("+(te_num+1)+")").addClass('current').siblings().removeClass('current');//为下一个添加选中状态
+	 				page_tele((ac_text+1));//调用上面的函数
+	 			}else{
+	 				var top_num=ac_text;//留住上一页的号码
+	 				for(var i=1;i<6;i++){
+	    				$(".tele_pagelist>a:eq("+i+")").text('');//先移除
+	    				$(".tele_pagelist>a:eq("+i+")").text((ac_text+1));
+	    				ac_text++;
+    				}
+	 				page_tele((top_num+1));//调用上面的函数
+	 				$(".tele_pagelist>a:eq(1)").addClass('current').siblings().removeClass('current');//为下一个添加选中状态
+	 			}
+	 		}else{//为<<箭头时
+	 			var ac_text=parseInt($(".tele_pagelist a.current").html());//获取现在所处位置的内容
+	 			var te_num=ac_text%5;//对应到li所处的位置上
+	 			if(te_num==0){
+	 				te_num=5;
+	 			}
+	 			var first_left_num=parseInt($(".tele_pagelist>a:eq(1)").html());//获取最左边的数字
+ 				if(ac_text>first_left_num){//当选中状态不是第一个时
+	 				$(".tele_pagelist>a:eq("+(te_num-1)+")").addClass('current').siblings().removeClass('current');//为下一个添加选中状态
+	 				page_tele((ac_text-1));//调用上面的函数
+	 			}else{
+	 				var top_num=ac_text;//留住上一页的号码
+	 				if(top_num!=1){
+	 					for(var i=5;i>0;i--){
+		    				$(".tele_pagelist>a:eq("+i+")").text('');//先移除
+		    				$(".tele_pagelist>a:eq("+i+")").text((ac_text-1));
+		    				ac_text--;
+	    				}
+	 					page_tele((top_num-1));//调用上面的函数
+	 					$(".tele_pagelist>a:eq(5)").addClass('current').siblings().removeClass('current');//为最后个添加选中状态
+	 				}
+	 				
+	 			}
+
+	 		}
+	 	}
+	})
+	//搜索
+	function changesearch(){	
+		var texts=$("input[name=keywords]").val();
+		
+	}
+	
+	//单个删除
+	function del(id,mid,iscid){
+		if(confirm("您确定要删除吗?")){
+			
+		}
+	}
+	
+	//全选
+	$("#tele_checkall").click(function(){ 
+	  $("input[name='id[]']").each(function(){
+		  if (this.checked) {
+			  this.checked = false;
+		  }
+		  else {
+			  this.checked = true;
+		  }
+	  });
+	})
+	
+	//批量删除
+	function DelSelect(){
+		var Checkbox=false;
+		var dele_datas=[];
+		 $("#televo input[name='id[]']").each(function(){
+			  if (this.checked==true) {		
+				Checkbox=true;
+				dele_datas.push(parseInt($(this).attr("data-id")));
+			  }  
+		});
+		if(Checkbox){
+			var t=confirm("您确认要删除选中的内容吗？");
+			if (t==false) return false;	
+			var flag=0;
+			for(let i=0;i<dele_datas.length;i++){
+				(function(i){
+					$.ajax({
+						type:"delete",
+						url:"/admin/tele_delete",
+						data:{"id":dele_datas[i]},
+						async:true,
+						success:function(data){
+							if(data.result==-1){
+								alert("删除失败");	
+								window.location='/admin'
+							}else{
+								flag++;
+								if(flag==dele_datas.length){
+									alert("删除成功");
+									window.location='/admin'
+								}
+							}
+						}
+					});
+				})(i)
+			}
+		}
+		else{
+			alert("请选择您要删除的内容!");
+				return false;
+		}
+	}
+	
+	
+
+</script>

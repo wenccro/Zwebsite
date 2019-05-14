@@ -1,0 +1,290 @@
+/*基本设置*/
+body{
+    font-size:14px;
+	margin:0px auto;
+	padding:0px;
+	font-family:"microsoft yahei","arial","verdana"
+	color:#c00;
+	background:#efe0db;
+}
+
+/*轮播图*/
+.lunbo{
+	position: relative;
+}
+.lunbo b{
+	position:absolute;
+	z-index: 100;
+	color:#c00;
+}
+/*明星产品*/
+.StarProduct{
+	width:1200px;
+	margin: 0 auto;
+}
+.title{
+	margin-top:30px;
+	margin-bottom:30px ;
+	text-align: center;
+}
+.title h3{
+	font-size: 26px;
+	font-weight: normal;
+	letter-spacing: 13px;
+	color:#676767;
+}
+.title p{
+	margin-top:20px;
+	color:#b8b0ab;
+	font-size: 16px;
+	letter-spacing: 1px;
+}
+.title p span{
+	color:#ea7877;
+	letter-spacing: 0px;
+}
+/*具体的明星产品*/
+.Product{
+	background-color:#d5b8b0;
+	padding-bottom:10px;
+	height:400px;	
+}
+.Product_last{
+	height:360px;
+	padding-top:20px;
+	padding-bottom: 0;	
+}
+.img{
+	display: inline-block;
+	width:50%;
+	height:360px;
+}
+.img img{
+	width:100%;
+	height:100%;
+}
+.introduce_1{
+	width:50%;
+	height:100%;
+}
+.font{
+	padding-top:20px;
+	margin-right:60px;
+}
+.introduce_1 h4{
+	font-size: 26px;
+	font-weight: normal;
+	color: #74321a;
+	margin-bottom: 20px;
+	padding-left: 20px;
+}
+.introduce_1 p{
+	color:#808080;
+	padding-left: 45px;
+}
+.introduce_1 .introduce_img{
+	height:260px;
+	line-height: 260px;
+	text-align: center;
+}
+.introduce_1 img{
+	width:320px;
+	display: inline-block;
+	vertical-align: middle;
+}
+.introduce_2{
+	width:50%;
+	height:100%;
+	display: inline-block;
+}
+.introduce_2 h4{
+	width:26px;
+	padding:0 20px;
+	font-size: 26px;
+	font-weight: normal;
+	color: #74321a;
+	float: left;
+	letter-spacing:20px;
+	height:350px;
+}
+.introduce_2 p{
+	display: inline-block;
+	width:16px;
+	padding-top: 30px;
+	color:#808080;
+	float: left;
+}
+.introduce_2 img{
+	width:320px;
+	position: relative;
+	top:100px;
+	left: 90px;
+}
+/*特殊位置改变*/
+#location_1{
+	width:60%;
+	height: 60%;
+	margin-top:53px;
+	margin-left: 145px;
+}
+#location_2{
+	width:60%;
+	top:53px;
+	left: 20px;
+}
+#location_3{
+	width:320px;
+	top:60px;
+	left: 60px;
+}
+#location_4{
+	position: relative;
+	
+	width:320px;
+}
+/*明星产品2*/
+.produt_picture{
+	width:1200px;
+	margin: auto;
+	height:285px;
+	overflow:hidden;
+	white-space: nowrap;	
+}
+.produt_picture ul{
+	height:285px;
+	display: inline-block;
+	white-space: nowrap;
+}
+.produt_picture ul li{
+	height:100%;
+	margin-right: 5px;
+	display: inline-block;
+}
+.produt_picture ul li img{
+	height:98.5%;
+}
+/*新闻*/
+.new{
+	height:393px;
+}
+.news_font{
+	width:800px;
+	display: inline-block;
+}
+.news_font ul li{
+	padding-bottom: 20px;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 10px;
+	margin-right:50px;
+}
+.news_font .new_time{
+	width:100px;
+	height:100px;
+	background-color: #762f19;
+	color:#fff;
+	display: inline-block;
+}
+.news_font .new_time p{
+	font-size:18px;
+	padding:5px 0;
+	text-align: center;
+}
+.news_font .new_time p:first-child{
+	font-size: 30px;
+     padding-top:10px;
+}
+.new_title{
+	height:100px;
+	width:650px;
+	float: right;
+}
+.new_title h3{
+	padding:15px 20px 20px;
+	font-size:20px;
+	font-weight: normal;
+	color:#000;
+}
+.new_title p{
+	font-size:16px;
+	padding-left: 20px;
+	color:#b8b0ab;
+}
+/*new_图像*/
+.news_img{
+	width:400px;
+    float: right;
+    text-align: right;
+}
+.news_img p{
+	font-size: 18px;
+	
+	margin-bottom:10px ;
+}
+.news_img p a{
+	color:#77301c;
+}
+.news_img img{
+	width:100%;
+}
+/*首页简介*/
+.intro_index_background{
+	width:100%;
+	height:660px;
+	background: url(../images/4.jpg);
+	background-size:100% ;
+	color:#fff;
+	margin-top:50px;
+}
+.intro_index{
+	width:1200px;
+	height: 100%;
+	margin:0 auto;
+	text-align: center;
+}
+.intro_index h1{
+	padding:20px;
+	padding-top:80px;
+	padding-bottom:80px;
+	font-weight: normal;
+}
+.intro_index p{
+	text-align: left;
+	padding:0 120px 50px;
+	font-size: 16px;
+	text-indent:2em;
+	line-height: 30px;
+}
+.intro_index a{
+	display: inline-block;
+	width:200px;
+	height:60px;
+	border:1px solid #fff;
+	line-height: 60px;
+	border-radius: 50px;
+	margin-bottom: 50px;
+	font-size: 22px;
+}
+.intro_index a:hover{
+	background-color:#fff;
+	color:#000;
+}
+.intro_index ul li{
+	margin-left:520px;
+	list-style:disc;
+	text-align: left;
+	font-size: 18px;
+	margin-bottom:25px ;
+}
+/*遮罩层*/
+.Masked{
+	height:100%;
+	background: rgba(0,0,0,0.5);
+}
+.maskLayer{
+	position:absolute;
+	width:100%;
+	height:100%;
+	line-height: 100%;
+	text-align: center;
+	z-index: 100;
+}

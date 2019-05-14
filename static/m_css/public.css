@@ -1,0 +1,195 @@
+/*基本设置*/
+* { margin: 0; padding: 0; }
+body { background-color: #333333; }
+img { border: 0; vertical-align: top; }
+ul, li { list-style: none; }
+body{
+    font-size:14px;
+	margin:0px auto;
+	padding:0px;
+	font-family:"microsoft yahei","arial","verdana"
+	color:#c00;
+	background:#efe0db;
+}
+ul,li,p,h1,h2,h3,h4,h5,h6,dl,dt,dd{
+    margin:0px;
+	padding:0px;
+	list-style:none;
+}
+input{
+    border:none;
+}
+a{
+	text-decoration: none;
+	color:#fff;
+}
+/*头部*/
+.header{
+	width:1200px;
+	height:100%;
+	margin:0 auto;
+	position: relative;
+}
+.header>img{
+	height:120px;
+}
+.header span{
+	float: right;
+	padding-right: 5px;
+}
+.header span i{
+	font-size: 28px;
+    line-height: 55px;
+    color: #762F19;
+    margin-right: 10px;
+}
+.header p{
+	position: absolute;
+	right: 0;
+	bottom:8px;
+	font-size: 17px;
+	color:#989898;
+}
+/*导航条*/
+.nav_background{
+	height:55px;
+	background-color: #762f19;
+}
+.nav{
+	width:1200px;
+	height:100%;
+	margin:0 auto;
+}
+.nav ul{
+	height:55px;
+}
+.nav ul li{
+	height:55px;
+	display: inline-block;
+}
+.nav ul li a{
+	display: inline-block;
+	width:129px;
+	height:55px;
+	line-height: 55px;
+	color:#dab997;
+	font-size: 20px;
+	text-align: center;
+}
+.nav ul li a.hover{
+	background-color: #c79483;
+	color:#8e5440;
+}
+.nav ul li a:hover{
+	background-color: #c79483;
+	color:#8e5440;
+}
+/* 页面底部*/
+.lf{
+	float: left;
+}
+.rt{
+	float: right; 
+}
+ #footer_background{
+ 	background-color:#762F19;
+ }
+#footer{
+	height:575px;
+	width:1200px;
+	margin:0 auto;
+	position:relative;
+}
+#footer .IMG{
+	position:absolute;
+	top:370px;
+	left:480px;
+}
+#footer>p{
+	padding-top:30px;
+	color:#fff;
+	font-size:22px;
+	text-align:center;
+}
+#footer li{
+	color:#fff;
+}
+#footer .top li{
+	padding:20px 0px;
+	line-height: 25px;
+}
+#footer .top li p{
+	text-indent:2em;	
+}
+#footer .footer li{
+	padding:20px 0px;
+	padding-left:50px;
+}
+#footer .footer .name{
+	background:url(../images/name.jpg) no-repeat 2px 12px; 	
+}
+#footer .footer .num{
+	background:url(../images/num.jpg) no-repeat 2px 12px; 	
+}
+#footer .footer .email{
+	background:url(../images/email.jpg) no-repeat 2px 12px; 	
+}
+#footer .footer .www{
+	background:url(../images/www.png) no-repeat 2px 12px; 	
+}
+#footer-left{
+	margin-top:50px;
+	padding-left: 60px;
+}
+#footer-right{
+	color:#fff;
+	margin-top:70px;
+	margin-right: 30px;
+} 
+#footer-right h3{
+	color:#fff;
+	font-size: 18px;
+	font-weight: normal;
+}
+	
+/*表单样式*/
+.form{
+	margin-top:50px;
+	margin-left: 30px;
+}
+.form p{
+	margin:25px 0; 
+}
+.form p input{
+	padding: 6px 0;
+	padding-left:5px ;
+	margin-left: 20px;
+	width:180px;
+}
+.form p textarea{
+	margin-left: 24px;
+	width:183px;
+	padding: 5px;
+	height:130px;
+	box-sizing: border-box;
+}
+.form p span{
+	float: left;
+}
+.form button{
+	width:185px;
+	height:40px;
+	background-color:#ef5450;
+	color:#fff;
+	border:0;
+	margin-left: 90px;
+}
+.jd{
+	float: right;
+	margin-left: 5px;
+	font-size: 20px;
+	color: red;
+	line-height: 40px;
+	border:none;
+}
+

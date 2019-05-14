@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>系统登录</title>
+<link href="../css/login.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all" />
+<link href="../css/demo.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="../js/jquery1.42.min.js"></script>
+<script type="text/javascript" src="../js/jquery.SuperSlide.js"></script>
+
+<script>
+	$(function(){
+		$(".i-text").focus(function(){
+			$(this).addClass('h-light');
+		});
+		
+		$(".i-text").focusout(function(){
+			$(this).removeClass('h-light');
+		});
+		
+		$("#username").focus(function(){
+			 $(this).attr({placeholder:""});
+		});
+		
+		$("#username").focusout(function(){
+			 var username = $(this).val();
+			 if(username==''){
+			 $(this).attr({placeholder:"输入账号"});
+			 }
+		});
+		
+		
+		$("#password").focus(function(){
+			  $(this).attr({placeholder:""});
+		});
+		$("#password").focusout(function(){
+			 var pass = $(this).val();
+			 if(pass==''){
+			 	$(this).attr({placeholder:"请输入密码"});
+			 }
+		});
+
+	});
+	
+</script>
+
+
+</head>
+
+<body>
+
+
+<div class="hh">
+	<div class="header">
+	  <h1 class="headerLogo"><a title="后台管理系统" target="_blank" href="#"><img alt="logo" src="../images/logo.jpg"></a></h1>
+		<div class="headerNav">
+			<a target="_blank" href="#">企业官网</a>
+			<a target="_blank" href="#">关于我们</a>
+			<a target="_blank" href="#">开发团队</a>
+			<a target="_blank" href="#">意见反馈</a>
+			<a target="_blank" href="#">帮助</a>	
+		</div>
+	</div>
+</div>
+
+<div class="banner">
+
+<div class="login-aside">
+  <div id="o-box-up"></div>
+  <div id="o-box-down"  style="table-layout:fixed;">
+   <div class="error-box"></div>
+   
+   <form class="registerform" action="/admin/enter" method="post">
+	   <div class="fm-item">
+		   <label for="logonId" class="form-label">森源艺佳管理系统：</label>  
+	       <input type="text" name="username" id="username" placeholder="输入账号" class="i-text" >
+	       <div class="ui-form-explain"></div>
+	  </div>
+	  
+	  <div class="fm-item">
+		   <label for="logonId" class="form-label">登陆密码：</label>
+		   <input type="password" placeholder='输入密码' maxlength="100" id="password" name="password" class="i-text" >    
+	       <div class="ui-form-explain"></div>
+	  </div>
+	
+	  <div class="fm-item">
+	  		<div class="control-wrapper">
+          		<input type="submit" value="登录" class="long">
+          	</div>
+	  </div>
+  </form>
+  
+  </div>
+
+</div>
+	<div class="bd">
+		<ul>
+			<li style="background:url(../images/theme-pic1.jpg) #CCE1F3 center 0 no-repeat;"><a target="_blank" href="#"></a></li>
+			<li style="background:url(../images/theme-pic2.jpg) #BCE0FF center 0 no-repeat;"><a target="_blank" href="#"></a></li>
+		</ul>
+	</div>
+	<div class="hd"><ul></ul></div>
+</div>
+<div class="banner-shadow"></div>
+
+
+</body>
+</html>

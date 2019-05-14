@@ -1,0 +1,61 @@
+﻿Senyuan_data_db
+
+1.admin_table //管理员
+	ID
+	username:varchar 20
+	userpwd:varchar 20
+/***************************************关于我们************************/
+2,about_table //关于我们
+	ID
+	company_profile:text  //公司简介
+	company_honor_url:varchar 50 //公司荣誉图片
+	company_culture_title:varchar 20 //企业文化标题
+	company_culture_content:varchar 200//企业文化内容
+	company_course_time:varchar 20 //发展历程的时间
+	company_course_incident:varchar 20//发展历程的事件
+
+/**************************************产品中心*****************************/
+3,nature_produce_table //属性创建表
+	ID
+	name:varchar 20//属性名称  如材质，空间
+	details:varchar 20 //属性详情  如 客厅  衣柜
+
+4，product_piture_table //产品图片属性
+	ID
+	name:varchar 20 //产品名字
+	nature_details:varchar 200 //属性详情  如 类型存储  海棠木*/*书法*/*客厅组合
+	iscarousel:int //1是轮播  0是不轮播（默认）
+	product_carousel:varvhar 200//只有轮播的有简介
+	details_carousel:text  //详情简介
+	design_concept	varchar(100)	//设计理念 	
+	isstar_pro：是否是明星产品 1是
+5，picture_table //产品中心所有图片的地址接收
+	ID
+	image_url:varchar 50
+	main_iamge:int //1是主要图片，0是次要图片
+	C_ID   int   //关联到产品图片上
+客厅组合 餐厅组合 卧室组合 书房组合
+
+/****************************************新闻中心**************************/
+6，news_table //新闻中心
+	ID
+	news_title: varchar(200)//新闻标题
+	news_content:text     //新闻内容
+	news_time:varchar(100)//新闻时间   2018-08-16
+	isheadline int   //是否是头条   1是   0不是（默认）
+	news_image:varchar(50)//新闻图片
+	new_image_title:varchar(50)//新闻图片标题
+/***************************************家具保养***************************/
+7，homes_maintenance //家具保养
+	ID
+	hmaint_title: varchar(200)//家具保养
+	hmaint_content:text     /家具保养内容
+	news_time:varchar(100)//新闻时间   2018-08-16
+	isheadline int   //是否是头条   1是   0不是（默认）
+	news_image:varchar(50)//家具保养图片	
+/***************************************留言区域***************************/
+8，telephone_table  //留言区域
+	ID
+	name:varchar(100)//留言名字
+	tele_num:varchar(20)//留言电话
+	context:text //留言内容

@@ -1,0 +1,132 @@
+/*       通用属性           */
+	body{
+    font-size:14px;
+	margin:0px auto;
+	padding:0px;
+	font-family:"microsoft yahei","arial","verdana"
+	color:#c00;
+	background:#efe0db;
+}
+ul,li,p,h1,h2,h3,h4,h5,h6,dl,dt,dd{
+    margin:0px;
+	padding:0px;
+	list-style:none;
+}
+input{
+    border:none;
+}
+a{
+	text-decoration: none;
+	color:#fff;
+}
+.lf{float: left;}
+.rt{float: right;}
+.clear{float: clear;}
+#jiameng{
+	width:1200px;
+	margin: 0px auto;
+	background: #EFE0DB;
+}
+#jiameng_lf{
+	float:left;
+	width:240px;
+}
+
+#jiameng_lf ul li a{
+	display:block;
+	color:#C79483;
+	font-size:24px;
+	width:228px;
+	height:44px;
+	margin:10px auto;
+	line-height:44px;
+	text-align:center;
+	background:url(../images/index_08.jpg) no-repeat 0px 0px;
+}
+#jiameng_lf ul li a:hover{
+	color:#ED514D;
+	background:url(../images/index_03.jpg) no-repeat 0px 0px;
+}
+#jiameng_rt{
+	display: inline-block;
+	width:960px;
+	height:860px;
+	background:url(../images/index_05.png) no-repeat -3px 0px;
+	margin-top: 10px;
+} 
+.Text{
+	padding-left: 35px;
+}
+#jiameng_rt .text{
+	color: #808080;
+	font-size: 16px;
+	letter-spacing: 3px;
+	font-weight: 650;
+	padding-top: 50px;
+}
+#text .text b{
+	display: inline-block;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+#text .text p{
+	line-height: 26px;
+}
+
+/*public*/
+/*遮罩层*/
+.Masked{
+	height:100%;
+	background: rgba(0,0,0,0.5);
+}
+/*欢迎语*/
+.intro_background{
+	height:335px;
+	background:url(../images/3.jpg);
+	background-size:100% ;
+	margin-bottom: 10px;
+}
+#main{
+	width:1200px;
+	margin:0 auto;
+	vertical-align:center;
+	text-align:center;
+	padding:100px auto;
+	padding-top:67px;
+}	
+#main_top{
+	text-align:center;
+}
+#main_top p{
+	color:rgba(255,255,255,0.4);
+	font-size:24px;
+}
+#main_center .border{
+	border:5px solid rgba(255,255,255,0.4);
+	margin:25px;	
+	display:inline-block;
+	border-radius:5px;
+}
+#main_center .border .bor p{
+	margin:5px;
+}
+#main_center .border .bor p span{
+	padding:25px 100px;
+	font-size:25px;
+	font-weight:600;
+	border:1px solid rgba(255,255,255,0.4);
+	display:inline-block;
+	background-color:rgba(255,255,255,0.4);
+}
+#main_bottom{
+	color:rgba(255,255,255,0.4);
+	font-size:18px;
+	letter-spacing:5px;
+}
+
+
+/*/hover*/
+#jiameng_lf .hover{
+	background:url(../images/index_03.jpg) no-repeat 0 0;
+	color:#ED514D;
+}

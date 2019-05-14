@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title>产品列表修改</title>
+<link rel="stylesheet" href="../css/pintuer.css">
+<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="../css/cropper.css" />
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../js/pintuer.js"></script>
+<script src="../js/cropper.js"></script>
+
+<!--引入富文本比较器的js-->
+<script type="text/javascript" charset="UTF-8" src="../ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../ueditor/lang/zh-cn/zh-cn.js"></script>
+<style>
+#cropedBigImg{
+min-height:40px;
+padding:0px;
+
+}
+</style>
+</head>
+<body>
+<div class="header bg-main">
+	  <div class="logo margin-big-left fadein-top">
+	    <h1><img src="../images/y.jpg" class="radius-circle rotate-hover" height="50" alt="" />森源艺佳后台管理中心</h1>
+	  </div>
+	  <div class="head-l"><a class="button button-little bg-green" href="http://www.chengppcc.cn/" target="_blank"><span class="icon-home"></span> 前台首页</a> &nbsp;&nbsp;<a href="##" class="button button-little bg-blue"><span class="icon-wrench"></span> 清除缓存</a> &nbsp;&nbsp;<a class="button button-little bg-red" href="/admin/enter"><span class="icon-power-off"></span> 退出登录</a> </div>
+	</div>
+<div class="panel admin-panel">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>修改内容</strong></div>
+  <div class="body-content">
+    <div class="form-x">  
+      <div class="form-group">
+        <div class="label">
+          <label>名称：</label>
+        </div>
+        <div class="field">
+          <input id="tu_name" type="text" class="input w25" value="" name="title" data-validate="required:请输入标题" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>图片：</label>
+        </div>
+        <div class="field yuimga">
+          <img id="cropedBigImg" name="img" class="input tips" style="width:25%; float:left;"  value=""  data-toggle="hover" data-place="right" data-image=""/>
+          <span>
+          	<input class="button bg-blue margin-left" id="image1" value="修改主图片"  style="float:left; cursor: pointer;">
+          </span>
+          <span>
+          	<input class="button bg-blue margin-left" id="image2" value="修改其次要图片"  style="float:left; cursor: pointer;">
+          </span>
+        </div>
+        <div class="container hidden">
+        		<input type="file" id="file">
+		        <img src="" alt="" id="img">
+		    </div>
+		    <div class="preview hidden">
+				<img src="" alt="" id="imga">
+		   	</div>
+		   	<div style="clear:both">
+		   		<button class="button bg-main qie hidden">裁剪</button>
+		   	</div>
+		   	<div class="field hidden jie">
+		   		<img id="cropedBigImg1" name="img" class="input tips" style="width:60%; margin: 0 auto;"  value=""  data-toggle="hover" data-place="right" data-image=""/>
+		   	</div>
+      </div>     
+      <div class="form-group cp_tz">
+      		<div class="label">
+	          <label>产品特征：</label>
+	        </div>
+	        <div class="field tzs_pro"></div>
+      </div>
+      
+      <div class="form-group cp_jj">
+      	<div class="label">
+	          <label>产品简介</label>
+	       </div>
+			    <div class="field">
+						<textarea id="content_tian"  style="height: 200px; width: 590px;"></textarea>
+						<!--实例化一个富文本框-->
+						<script type="text/javascript">
+							var ue=UE.getEditor('content_tian');
+						</script>
+				</div>
+        </div>
+      </div>
+      <div class="clear"></div>
+
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+          <div class="hidden" id="flag_biao"></div>
+          <div class="hidden" id="sm_biao">0</div>
+        </div>
+        <div class="field" style="margin-left:200px">
+          <button class="button bg-main icon-check-square-o sub" > 提交</button>
+           <a href="/admin" class="button bg-main icon-check-square-o " >返回</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  	  <script>
+  	  	//******************************************************
+					//产品特征拉取
+					(function(){
+  	  			$.ajax({
+  	  				type:"get",
+  	  				url:"/admin/tzmadddata",
+  	  				async:true,
+  	  				success:function(data){
+  	  					for(var i=0;i<data.data.length;i++){
+  	  						$(".tzs_pro").append("<div class='tz_lis'><span class='tz_name'></span><select></select></div>");
+  	  						$(".tzs_pro>div:eq("+i+")>span").html(data.data[i].name);
+  	  						for(let j=0;j<data.data[i].details.length;j++){
+  	  								$(".tzs_pro>div:eq("+i+")>select").append("<option value='"+data.data[i].details[j]+"'>"+data.data[i].details[j]+"</option>")
+  	  						}
+  	  					}
+  	  				}
+  	  			});
+  	  	})();
+				//******************************************************
+  	  	(function(){
+  	  		var reg = new RegExp(/[^=]+/g);//^以什么开头，匹配全部   
+					var r = window.location.search.substr(1).match(reg); 
+					var t_id=parseInt(r[1]);
+					$.ajax({
+						type:"post",
+						url:"/admin/tzmalters",
+						async:true,
+						data:{"id":t_id},
+						success:function(data){
+							//console.log(data.data);
+							$("#flag_biao").html(data.data[0].ID);//将同款产品信息的id留住
+							$("#tu_name").val(data.data[0].name);
+							//产品详情
+							ue.ready(function() { 
+								ue.setContent(data.data[0].details_carousel); 
+							});
+							$("#cropedBigImg").attr("src","/upload/"+data.data[0].img_url);
+							
+							//为产品特征添加  选中状态
+							var tz_leng=$(".tzs_pro").children().length;
+							for(let i=0;i<tz_leng;i++){
+								var sele_len=$(".tzs_pro>div:eq("+i+")>select").children().length;
+								for(let j=0;j<sele_len;j++){
+									var options=$(".tzs_pro>div:eq("+i+")>select>option:eq("+j+")").val();
+									if(data.data[0].nature_details[i]==options){
+										$(".tzs_pro>div:eq("+i+")>select>option:eq("+j+")").attr("selected","selected");
+									}
+								}
+							}
+							$("#image2").click(function(){//当次要图片按钮被点击的时候跳转页面
+								window.location='/admin/tzmalterImgs'+'?c_id='+t_id;
+							})
+							$("#image1").click(function(){//当主图片修改按钮被点击的时候
+									$("#sm_biao").html('');//
+									$("#sm_biao").html(1);//写入1，主图片修改按钮表示点击了修改
+									$(".container").removeClass("hidden");
+									$(".preview").removeClass("hidden");
+									$(".qie").removeClass("hidden");
+									$(".yuimga").addClass("hidden");
+						//剪切-*****************************
+									var image = document.getElementById('img');
+					        var cropper, canvas;
+					        var wid,hei;
+					        $('#file').change(function(e){
+					            var file;
+					            var files = e.target.files;
+					             if (files && files.length > 0) {
+					                file = URL.createObjectURL(files[0]);
+					                $('#img').attr({'src': file})
+					                var images= new Image();
+					             		images.onload=function(){
+					             			var width=parseInt(images.width);
+					             			var height=parseInt(images.height);
+					             			if(width>height){
+					             				wid=3;
+					             				hei=2;
+					             			}else{
+					             				wid=2;
+					             				hei=3;
+					             			}
+					             		}
+					             		images.src=file;
+
+					            }
+					             var cropper = new Cropper(image,{
+				             			//裁剪框比例
+													aspectRatio: wid/hei,    
+													viewMode:1,
+													background:false,
+													zoomable:false,//是否允许放大图片
+													scalable:true,//是否允许缩小图片
+													dragMode :'crop',
+					                cropBoxResizable:true,
+					                autoCropArea:0.8,//定义自动裁剪面积大小(百分比)和图片进行对比
+					               	mouseWheelZoom:true,//是否允许通过鼠标滚轮来缩放图片
+					                autoCrop:true,//自动裁剪
+					                background:true,
+					                modal:true,
+					                guides:true,
+					                highlight:false,   
+					                resizable:true,
+			
+			                crop: function (event) { //剪裁框发生变化执行的函数。
+			                    canvas = cropper.getCroppedCanvas({  //使用canvas绘制一个宽和高200的图片
+			  											width: 600,
+			                        height: 400,
+			                    });
+			                    $('#imga').attr("src", canvas.toDataURL("image/png", 0.3))  //使用canvas toDataURL方法把图片转换为base64格式
+			                    $("#cropedBigImg1").attr("src", canvas.toDataURL("image/png", 0.3))
+			                	//当图片存放
+			                	$(".qie").click(function(){
+			                		$(".container").addClass('hidden');
+			                		$(".preview").addClass('hidden');
+			                		$(".jie").removeClass('hidden');
+			                		$(".qie").addClass("hidden");
+			                	})
+			                }
+			            });
+			        })
+						})
+						//****************************************
+						}
+					});
+					//将base64格式图片转换为文件形式
+			    function dataURLtoBlob(dataurl) {  
+			        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+			            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+			        while (n--) {
+			            u8arr[n] = bstr.charCodeAt(n);
+			        }
+			        return new Blob([u8arr], { type: mime });
+			    }
+					$(".sub").click(function(){
+						var name=$("#tu_name").val();
+						var tz_ss='';//保留属性值
+						var les=$(".tzs_pro").children().length;
+						for(let i=0;i<les;i++){
+							var tt=$(".tzs_pro>div:eq("+i+") option:selected").val();
+							tz_ss+=tt+"*/*";
+						}
+						var miao=UE.getEditor('content_tian').getContent();//获取产品简介
+						var sm_b=parseInt($("#sm_biao").html())//判断图片是否修改的标志
+						if(sm_b==1){//说明修改了主要图片
+								//var c_img=$('#image1').prop('files');//获取文件图片
+								if(name!=''&&img.length!=0){//必须有名字和图片
+									var file = dataURLtoBlob($('#imga').attr("src"));  //将base64格式图片转换为文件形式
+			    				var formData = new FormData();
+			    				var newImg = new Date().getTime() + '.png';   //给图片添加文件名   如果没有文件名会报错
+			    				formData.append('file', file, newImg)  //formData对象添加文件
+									//console.log(files_name[0]);
+										//发送图片以外的数据
+										$.ajax({
+											type:"post",
+											url:"/admin/tzm_stalter",
+											data:{
+													"id":t_id,
+												 "name":name,
+												 "teze":tz_ss,
+												 "miao":miao
+											},
+											dataType: 'JSON',
+											async:true,
+											success:function(data){
+												if(data.result==1){
+														$.ajax({
+															type:"post",
+															url:"/admin/tzmStlterImage"+"?id="+t_id,
+															data:formData,
+															dataType: 'JSON',
+															contentType:false,
+															processData:false,
+															success:function(data){
+																if(data.result==1){
+																	alert("修改成功");
+																	window.location='/admin'
+																}else{
+																	alert("修改失败");
+																	window.location='/admin'
+																}
+															}
+												});
+												}
+												
+											}
+										});
+								}
+				
+						}else{
+							$.ajax({
+								type:"post",
+								url:"/admin/tzm_stalter",
+								data:{
+										"id":t_id,
+									 "name":name,
+									 "teze":tz_ss,
+									 "miao":miao
+								},
+								dataType: 'JSON',
+								async:true,
+								success:function(data){
+									if(data.result==1){
+										alert("修改成功");
+										window.location='/admin'
+									}else{
+										alert("修改失败");
+										window.location='/admin'
+									}
+								}
+							});
+						}
+						
+					})
+					
+  	  	})()
+		   $('#image1').on('change',function(){
+		    	var filePath = $(this).val(),         //获取到input的value，里面是文件的路径
+		    		fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+		    		src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+		    		
+		    	// 检查是否是图片
+		    	if( !fileFormat.match(/.png|.jpg|.jpeg/) ) {
+		    		error_prompt_alert('上传错误,文件格式必须为：png/jpg/jpeg');
+		        	return;  
+		       }
+		       $('#cropedBigImg').attr('src',src);
+				});
+				
+	  </script>
+</div>
+</body>
+</html>
